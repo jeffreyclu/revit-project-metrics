@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./app.styles.css";
 
+import Form from "../form/form";
+
 const App = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -12,11 +14,7 @@ const App = () => {
     };
     fetchData();
   }, []);
-  return (
-    <div>
-      <h1>sup</h1>
-    </div>
-  );
+  return <Form />;
 };
 
 export default App;
