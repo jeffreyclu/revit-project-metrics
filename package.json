@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node server.js",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "dev-server": "nodemon server.js",
+    "dev-server": "nodemon server/server.js",
     "dev-client": "cd client && npm start"
   },
   "keywords": [],
