@@ -1,3 +1,56 @@
 .Form {
-  display: grid;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 30rem;
+  max-width: 60rem;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid grey;
+}
+
+.Form h4 {
+  color: grey;
+}
+
+.Section {
+  box-sizing: border-box;
+  margin: 1rem;
+  padding: 1rem 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.Inputs {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
+.Inputs button {
+  align-self: flex-start;
+}
+
+.Label {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0.5rem 0;
+}
+
+.Input {
+  line-height: 1.25rem;
+  min-width: 15rem;
+}
+
+.Buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  margin: 1rem 0 0 0;
+}
+
+.Buttons button {
+  font-size: 1.1rem;
 }

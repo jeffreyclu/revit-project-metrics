@@ -7,14 +7,18 @@ const App = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      let resp = await fetch("/app");
+      let resp = await fetch("/api");
       console.log(resp);
       let data = await resp.json();
-      console.log(data);
+      setData(data);
     };
     fetchData();
   }, []);
-  return <Form />;
+  return (
+    <div className="App">
+      <Form />
+    </div>
+  );
 };
 
 export default App;

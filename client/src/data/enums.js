@@ -1,16 +1,86 @@
+const inputTypes = {
+  text: "text",
+  checkbox: "checkbox",
+  number: "number",
+  password: "password",
+  email: "email",
+  date: "date",
+  month: "month",
+  time: "time",
+  range: "range",
+};
+
 export default {
-  formLabels: {
-    constructionCost: "Construction Cost",
-    fee: "Fee",
-    structuralFee: "Structural Fee",
-    mepFee: "MEP Fee",
-    actualStaffHours: "Actual Staff Hours",
-    budgetedStaffHours: "Budgeted Staff Hours",
-    profitability: "Profitability",
-    constructionType: "Construction Type",
-    residentialType: "Residential Type",
-    location: "Location",
-    designYear: "Design Year",
-    builtYear: "Built Year",
+  projectData: {
+    title: "Project Data",
+    formLabels: {
+      projectName: {
+        displayText: "Project Name",
+        inputType: inputTypes.text,
+        required: true,
+      },
+      projectNumber: {
+        displayText: "Project Number",
+        inputType: inputTypes.number,
+        required: true,
+      },
+    },
+  },
+  visionData: {
+    title: "Vision Data",
+    formLabels: {
+      constructionCost: {
+        displayText: "Construction Cost",
+        inputType: inputTypes.number,
+      },
+      fee: {
+        displayText: "Fee",
+        inputType: inputTypes.number,
+      },
+      structuralFee: {
+        displayText: "Structural Fee",
+        inputType: inputTypes.number,
+      },
+      mepFee: {
+        displayText: "MEP Fee",
+        inputType: inputTypes.number,
+      },
+      actualStaffHours: {
+        displayText: "Actual Staff Hours",
+        inputType: inputTypes.number,
+      },
+      budgetedStaffHours: {
+        displayText: "Budgeted Staff Hours",
+        inputType: inputTypes.number,
+      },
+      profitability: {
+        displayText: "Profitability",
+        inputType: inputTypes.number,
+      },
+      constructionType: {
+        displayText: "Construction Type",
+        inputType: inputTypes.text,
+      },
+      residentialType: {
+        displayText: "Residential Type",
+        inputType: inputTypes.text,
+      },
+      location: {
+        displayText: "Location",
+        inputType: inputTypes.text,
+      },
+      designYear: {
+        displayText: "Design Year",
+        inputType: inputTypes.month,
+      },
+      builtYear: {
+        displayText: "Built Year",
+        inputType: inputTypes.month,
+      },
+    },
+  },
+  revitData: {
+    title: "Revit Data",
+    formLabels: {},
   },
 };
