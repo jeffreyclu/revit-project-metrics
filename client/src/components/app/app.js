@@ -4,13 +4,13 @@ import "./app.styles.css";
 import Form from "../form/form";
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       let resp = await fetch("/api");
-      console.log(resp);
-      let data = await resp.json();
-      setData(data);
+      let res = await resp.json();
+      console.log(res);
+      setData(res);
     };
     fetchData();
   }, []);

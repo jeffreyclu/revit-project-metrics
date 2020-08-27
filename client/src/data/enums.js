@@ -81,6 +81,15 @@ export default {
   },
   revitData: {
     title: "Revit Data",
-    formLabels: {},
+    formLabels: {
+      interiorAmenityArea: {
+        displayText: "Interior Amenity Area",
+        inputType: inputTypes.number,
+      },
+      outdoorAmenityArea: {
+        displayText: "Outdoor Amenity Area",
+        inputType: inputTypes.number,
+      },
+    },
   },
 };
