@@ -1,25 +1,30 @@
 const express = require('express');
-const { Client } = require('pg');
+
+const dbController = require('../controllers/db-controller');
 
 const router = express.Router();
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: false
+router.get('/', (req, res) => {
+  res.send({msg: 'Welcome to the Revit Project Metrics API!'})
 });
 
-client.connect()
-  .then(() => console.log(`connected to ${process.env.DATABASE_URL}`))
-  .catch((err) => {
-    console.log(err);
-  });
+router.get('/projects', 
+  dbController.getProjects,
+  (req, res) => res.status(200).json(res.locals.projects)
+);
 
-router.get('/', (req, res, next) => {
-  let results;
-  client.query('SELECT * FROM projects')
-    .then((res) => results = res);
-  res.send({msg: results});
-  next();
-});
+router.get('/project',
+  dbController.getProject,
+  (req, res) => res.status(200).json(res.locals.foundProjects))
+
+router.post('/addproject',
+  dbController.addProject,
+  (req, res) => res.status(200).json(res.locals.projectId)
+)
+
+router.delete('/resettable',
+  dbController.resetTable,
+  (req, res) => res.status(200).json(res.locals.result)
+)
 
 module.exports = router;
