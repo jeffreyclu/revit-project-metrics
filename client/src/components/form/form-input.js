@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormInput = ({ formLabel, formData, setFormData }) => {
+const FormInput = ({ formLabel, formData, setFormData, setValidated }) => {
   const { displayText, inputType, required } = formLabel;
   const inputId = displayText.toLowerCase().replace(/\s/g, "_");
   return (
@@ -16,6 +16,7 @@ const FormInput = ({ formLabel, formData, setFormData }) => {
           id={inputId}
           value={formData[inputId] || ""}
           onChange={(e) => {
+            setValidated(false);
             setFormData({ ...formData, [inputId]: e.target.value });
           }}
         />

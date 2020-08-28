@@ -139,3 +139,12 @@
   color: #24b47e;
   border: 1px solid #24b47e;
 }
+
+.Message {
+  color: red;
+  margin: 0.5rem 0;
+}
+
+.Message:nth-last-of-type(2) {
+  margin-bottom: 3rem;
+}

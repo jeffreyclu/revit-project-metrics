@@ -13,7 +13,7 @@ router.get('/projects',
   (req, res) => res.status(200).json(res.locals.projects)
 );
 
-router.get('/project',
+router.post('/project',
   dbController.getProject,
   (req, res) => res.status(200).json(res.locals.foundProjects))
 

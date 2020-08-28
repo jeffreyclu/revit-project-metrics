@@ -1,4 +1,4 @@
-const inputTypes = {
+export const inputTypes = {
   text: "text",
   checkbox: "checkbox",
   number: "number",
@@ -8,6 +8,15 @@ const inputTypes = {
   month: "month",
   time: "time",
   range: "range",
+};
+
+export const warningMessages = {
+  formWarnings: {
+    projectNameBlank: "Project Name cannot be blank",
+    projectNumberBlank: "Project Number cannot be blank",
+    projectAlreadyExists:
+      "Project already exists - do you want to edit the data for the existing project?",
+  },
 };
 
 export default {

@@ -4,17 +4,19 @@ import "./form.styles.css";
 import enums from "../../data/enums";
 import FormSection from "./form-section";
 
-const FormSelect = ({ formLabel }) => {
-  return (
-    <>
-      <select className="Select"></select>
-    </>
-  );
-};
+// const FormSelect = ({ formLabel }) => {
+//   return (
+//     <>
+//       <select className="Select"></select>
+//     </>
+//   );
+// };
 
 const Form = () => {
   const [currentSection, setSection] = useState(0);
   const [formData, setFormData] = useState({});
+  const [validated, setValidated] = useState(false);
+
   const formSections = Object.values(enums).map((formSection, i) => (
     <FormSection
       key={`${formSection.title} Label`}
@@ -26,6 +28,8 @@ const Form = () => {
       maxSections={Object.values(enums).length - 1}
       formData={formData}
       setFormData={setFormData}
+      validated={validated}
+      setValidated={setValidated}
     />
   ));
   return <form className="Form">{formSections}</form>;
