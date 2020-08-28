@@ -16,7 +16,7 @@ const EditProject = (props) => {
       return setFetched(true);
     };
     fetchProject();
-  }, []);
+  }, [project_id]);
   return (
     <div className="EditProject">
       {fetched ? (

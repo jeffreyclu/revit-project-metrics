@@ -48,7 +48,7 @@ const FormSection = ({
     if (!formData.project_name || !formData.project_number)
       return setFormMessage(msg);
 
-    const resp = await fetch("/api/project", {
+    const resp = await fetch("/api/validateproject", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(formData),

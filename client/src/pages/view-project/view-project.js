@@ -16,7 +16,7 @@ const ViewProject = (props) => {
       return setFetched(true);
     };
     fetchProject();
-  }, []);
+  }, [project_id]);
   return (
     <div className="ViewProject">
       {fetched ? (

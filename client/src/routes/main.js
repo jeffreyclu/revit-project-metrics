@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import AllProjects from "../pages/all-projects/all-projects";
@@ -13,7 +13,13 @@ import Nav from "../components/nav/nav";
 import "./main.styles.css";
 
 const Main = () => {
-  const [project, setProject] = useState({});
+  const addProject = async () => {
+    const resp = await fetch("/api/addproject", {
+      method: "POST",
+      body: { test: "testttttt" },
+    });
+    console.log(resp);
+  };
   return (
     <div className="App">
       <Router>

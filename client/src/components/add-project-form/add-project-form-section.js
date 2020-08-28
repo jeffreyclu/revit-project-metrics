@@ -1,22 +1,14 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import FormInput from "./form-input";
 import FormMessage from "./form-message";
 
-import { warningMessages } from "../../data/enums";
+import enums, { warningMessages } from "../../data/enums";
 
-const FormSection = ({
-  sectionTitle,
-  formLabels,
-  currentSection,
-  section,
-  setSection,
-  maxSections,
-  formData,
-  setFormData,
-  validated,
-  setValidated,
-}) => {
+const AddProjectFormSection = (props) => {
+  const { formData, setFormData, validated, setValidated } = props;
+  const formLabels = enums.addProject.projectData.formLabels;
   const [formMessage, setFormMessage] = useState({
     projectName: {
       warning: false,
@@ -25,6 +17,7 @@ const FormSection = ({
       warning: false,
     },
   });
+  const history = useHistory();
 
   const validateProject = async () => {
     const msg = { ...formMessage };
@@ -48,7 +41,7 @@ const FormSection = ({
     if (!formData.project_name || !formData.project_number)
       return setFormMessage(msg);
 
-    const resp = await fetch("/api/project", {
+    const resp = await fetch("/api/validateproject", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(formData),
@@ -66,8 +59,15 @@ const FormSection = ({
     setFormMessage(msg);
   };
 
-  // display nothing if the user is not at this section
-  if (currentSection !== section) return null;
+  const addProject = async () => {
+    const resp = await fetch("/api/addproject", {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+    const res = await resp.json();
+    if (res) history.push(`/editproject/${res.project_id}`);
+  };
 
   // generate the form inputs
   const formInputs = Object.values(formLabels).map((formLabel, i) => (
@@ -90,43 +90,28 @@ const FormSection = ({
 
   return (
     <div className="Section">
-      <h4>
-        Step {section + 1} of {maxSections + 1}
-      </h4>
-      <h2>{sectionTitle}</h2>
+      <h2>Project Data</h2>
       <span className="Required">
         <span className="Asterisk">*</span>required
       </span>
       <div className="Inputs">
         {formInputs}
         {formMessages}
-        {section === 0 && !validated && (
+        {!validated && (
           <span className="Validate" onClick={validateProject}>
             Validate
           </span>
         )}
       </div>
       <div className="Buttons">
-        {section > 0 && (
-          <span
-            className="Prev"
-            onClick={() => setSection((currentSection -= 1))}
-          >
-            Prev
-          </span>
-        )}
-        {section < maxSections && validated && (
-          <button
-            className="Next"
-            onClick={() => setSection((currentSection += 1))}
-          >
-            Next
+        {validated && (
+          <button onClick={addProject} className="Submit">
+            Submit
           </button>
         )}
-        {section === maxSections && <button className="Submit">Submit</button>}
       </div>
     </div>
   );
 };
 
-export default FormSection;
+export default AddProjectFormSection;

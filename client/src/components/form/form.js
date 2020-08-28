@@ -8,8 +8,9 @@ const Form = (props) => {
   const { formType } = props;
   const [currentSection, setSection] = useState(0);
   const [formData, setFormData] = useState({});
+  const [validated, setValidated] = useState(false);
 
-  const formSections = Object.values(enums).map((formSection, i) => (
+  const formSections = Object.values(enums[formType]).map((formSection, i) => (
     <FormSection
       key={`Form Section ${i}`}
       sectionTitle={formSection.title}
@@ -17,11 +18,14 @@ const Form = (props) => {
       section={i}
       currentSection={currentSection}
       setSection={setSection}
-      maxSections={Object.values(enums).length - 1}
+      maxSections={Object.values(enums[formType]).length - 1}
       formData={formData}
       setFormData={setFormData}
+      validated={validated}
+      setValidated={setValidated}
     />
   ));
+
   return <form className="Form">{formSections}</form>;
 };
 

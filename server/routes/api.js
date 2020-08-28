@@ -14,17 +14,23 @@ router.get('/projects',
 );
 
 router.get('/project/:project_id',
-  dbController.getProject,
-  (req, res) => res.status(200).json(res.locals.project))
+  dbController.getProjectById,
+  (req, res) => res.status(200).json(res.locals.project)
+);
+
+router.post('/validateproject',
+  dbController.validateProject,
+  (req, res) => res.status(200).json(res.locals.foundProjects)
+);
 
 router.post('/addproject',
   dbController.addProject,
   (req, res) => res.status(200).json(res.locals.projectId)
-)
+);
 
 router.delete('/resettable',
   dbController.resetTable,
   (req, res) => res.status(200).json(res.locals.result)
-)
+);
 
 module.exports = router;

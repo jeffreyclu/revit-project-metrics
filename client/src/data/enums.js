@@ -20,84 +20,88 @@ export const warningMessages = {
 };
 
 export default {
-  projectData: {
-    title: "Project Data",
-    formLabels: {
-      projectName: {
-        displayText: "Project Name",
-        inputType: inputTypes.text,
-        required: true,
-      },
-      projectNumber: {
-        displayText: "Project Number",
-        inputType: inputTypes.number,
-        required: true,
-      },
-    },
-  },
-  visionData: {
-    title: "Vision Data",
-    formLabels: {
-      constructionCost: {
-        displayText: "Construction Cost",
-        inputType: inputTypes.number,
-      },
-      fee: {
-        displayText: "Fee",
-        inputType: inputTypes.number,
-      },
-      structuralFee: {
-        displayText: "Structural Fee",
-        inputType: inputTypes.number,
-      },
-      mepFee: {
-        displayText: "MEP Fee",
-        inputType: inputTypes.number,
-      },
-      actualStaffHours: {
-        displayText: "Actual Staff Hours",
-        inputType: inputTypes.number,
-      },
-      budgetedStaffHours: {
-        displayText: "Budgeted Staff Hours",
-        inputType: inputTypes.number,
-      },
-      profitability: {
-        displayText: "Profitability",
-        inputType: inputTypes.number,
-      },
-      constructionType: {
-        displayText: "Construction Type",
-        inputType: inputTypes.text,
-      },
-      residentialType: {
-        displayText: "Residential Type",
-        inputType: inputTypes.text,
-      },
-      location: {
-        displayText: "Location",
-        inputType: inputTypes.text,
-      },
-      designYear: {
-        displayText: "Design Year",
-        inputType: inputTypes.month,
-      },
-      builtYear: {
-        displayText: "Built Year",
-        inputType: inputTypes.month,
+  addProject: {
+    projectData: {
+      title: "Project Data",
+      formLabels: {
+        projectName: {
+          displayText: "Project Name",
+          inputType: inputTypes.text,
+          required: true,
+        },
+        projectNumber: {
+          displayText: "Project Number",
+          inputType: inputTypes.number,
+          required: true,
+        },
       },
     },
   },
-  revitData: {
-    title: "Revit Data",
-    formLabels: {
-      interiorAmenityArea: {
-        displayText: "Interior Amenity Area",
-        inputType: inputTypes.number,
+  editProject: {
+    visionData: {
+      title: "Vision Data",
+      formLabels: {
+        constructionCost: {
+          displayText: "Construction Cost",
+          inputType: inputTypes.number,
+        },
+        fee: {
+          displayText: "Fee",
+          inputType: inputTypes.number,
+        },
+        structuralFee: {
+          displayText: "Structural Fee",
+          inputType: inputTypes.number,
+        },
+        mepFee: {
+          displayText: "MEP Fee",
+          inputType: inputTypes.number,
+        },
+        actualStaffHours: {
+          displayText: "Actual Staff Hours",
+          inputType: inputTypes.number,
+        },
+        budgetedStaffHours: {
+          displayText: "Budgeted Staff Hours",
+          inputType: inputTypes.number,
+        },
+        profitability: {
+          displayText: "Profitability",
+          inputType: inputTypes.number,
+        },
+        constructionType: {
+          displayText: "Construction Type",
+          inputType: inputTypes.text,
+        },
+        residentialType: {
+          displayText: "Residential Type",
+          inputType: inputTypes.text,
+        },
+        location: {
+          displayText: "Location",
+          inputType: inputTypes.text,
+        },
+        designYear: {
+          displayText: "Design Year",
+          inputType: inputTypes.month,
+        },
+        builtYear: {
+          displayText: "Built Year",
+          inputType: inputTypes.month,
+        },
       },
-      outdoorAmenityArea: {
-        displayText: "Outdoor Amenity Area",
-        inputType: inputTypes.number,
+    },
+    revitData: {
+      title: "Revit Data",
+      formLabels: {
+        interiorAmenityArea: {
+          displayText: "Interior Amenity Area",
+          inputType: inputTypes.number,
+        },
+        outdoorAmenityArea: {
+          displayText: "Outdoor Amenity Area",
+          inputType: inputTypes.number,
+        },
       },
     },
   },
