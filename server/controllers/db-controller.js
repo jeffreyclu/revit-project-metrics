@@ -16,13 +16,28 @@ dbController.getProjects = (req, res, next) => {
   })();
 }
 
+// dbController.getProject = (req, res, next) => {
+//   const { project_name, project_number } = req.body;
+//   const queryString = `SELECT * FROM projects WHERE project_name='${project_name}' OR project_number='${project_number}'`;
+//   (async () => {
+//     try {
+//       const resp = await db.query(queryString);
+//       res.locals.foundProjects = resp.rows;
+//       next();
+//     }
+//     catch (err) {
+//       next({ msg: err, status: 400 });
+//     }
+//   })()
+// }
+
 dbController.getProject = (req, res, next) => {
-  const { project_name, project_number } = req.body;
-  const queryString = `SELECT * FROM projects WHERE project_name='${project_name}' OR project_number='${project_number}'`;
+  const { project_id } = req.params;
+  const queryString = `SELECT * FROM projects WHERE project_id='${project_id}';`;
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.foundProjects = resp.rows;
+      res.locals.project = resp.rows;
       next();
     }
     catch (err) {

@@ -13,9 +13,9 @@ router.get('/projects',
   (req, res) => res.status(200).json(res.locals.projects)
 );
 
-router.post('/project',
+router.get('/project/:project_id',
   dbController.getProject,
-  (req, res) => res.status(200).json(res.locals.foundProjects))
+  (req, res) => res.status(200).json(res.locals.project))
 
 router.post('/addproject',
   dbController.addProject,

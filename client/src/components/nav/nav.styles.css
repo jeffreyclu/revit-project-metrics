@@ -1,0 +1,16 @@
+.MainNav {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.NavLink {
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.NavLink a {
+  color: #191722;
+  text-decoration: none;
+}

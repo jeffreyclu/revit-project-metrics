@@ -1,0 +1,11 @@
+.SearchProjects {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.SearchBar {
+  width: 60vw;
+}

@@ -1,0 +1,5 @@
+.AllProjects {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 10rem;
+}
