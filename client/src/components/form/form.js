@@ -25,9 +25,6 @@ const Form = (props) => {
       setFormData={setFormData}
     />
   ));
-
-  console.log(Object.values(enums.editProject));
-
   return <form className="Form">{formSections}</form>;
 };
 

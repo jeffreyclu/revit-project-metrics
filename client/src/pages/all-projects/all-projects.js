@@ -7,7 +7,7 @@ const AllProjects = () => {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
-      let resp = await fetch("/api/projects");
+      let resp = await fetch("/api/allprojects");
       let res = await resp.json();
       setProjects(res);
     };

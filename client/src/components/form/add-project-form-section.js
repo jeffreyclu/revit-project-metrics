@@ -41,13 +41,12 @@ const AddProjectFormSection = (props) => {
     if (!formData.project_name || !formData.project_number)
       return setFormMessage(msg);
 
-    const resp = await fetch("/api/validateproject", {
+    const resp = await fetch("/api/findproject", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(formData),
     });
     const res = await resp.json();
-    console.log(res);
     if (res.length === 0) {
       setFormMessage(msg);
       return setValidated(true);

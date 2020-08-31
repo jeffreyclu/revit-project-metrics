@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import FormInput from "./form-input";
 import FormMessage from "./form-message";
@@ -16,14 +16,23 @@ const FormSection = ({
   formData,
   setFormData,
 }) => {
-  const [formMessage, setFormMessage] = useState({
-    projectName: {
-      warning: false,
-    },
-    projectNumber: {
-      warning: false,
-    },
-  });
+  const [formMessage, setFormMessage] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const table_name = sectionTitle.toLowerCase().replace(/\s/g, "_");
+      const resp = await fetch(`/api/project/${project_id}/${table_name}`);
+      const res = await resp.json();
+      setFormData(res[0]);
+    };
+    if (currentSection === section) fetchData();
+  }, [currentSection]);
+
+  const saveData = async () => {
+    const table_name = sectionTitle.toLowerCase().replace(/\s/g, "_");
+    const resp = await fetch(`/api/project/${project_id}/${table_name}`);
+    const res = await resp.json();
+  };
 
   // display nothing if the user is not at this section
   if (currentSection !== section) return null;

@@ -1,8 +1,12 @@
 import React from "react";
+import enums from "../../data/enums";
 
-const FormInput = ({ formLabel, formData, setFormData, setValidated }) => {
+const FormInput = (props) => {
+  const { formLabel, formData, setFormData } = props;
   const { displayText, inputType, required } = formLabel;
+
   const inputId = displayText.toLowerCase().replace(/\s/g, "_");
+
   return (
     <>
       <label className="Label">
@@ -16,7 +20,6 @@ const FormInput = ({ formLabel, formData, setFormData, setValidated }) => {
           id={inputId}
           value={formData[inputId] || ""}
           onChange={(e) => {
-            setValidated(false);
             setFormData({ ...formData, [inputId]: e.target.value });
           }}
         />
