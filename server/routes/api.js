@@ -8,9 +8,14 @@ router.get('/', (req, res) => {
   res.send({msg: 'Welcome to the Revit Project Metrics API!'})
 });
 
-router.get('/projects', 
+router.get('/allprojects', 
   dbController.getProjects,
   (req, res) => res.status(200).json(res.locals.projects)
+);
+
+router.get('/project/:project_id/:table_name',
+  dbController.getDataByProjectId,
+  (req, res) => res.status(200).json(res.locals.projectData)
 );
 
 router.get('/project/:project_id',
@@ -18,8 +23,8 @@ router.get('/project/:project_id',
   (req, res) => res.status(200).json(res.locals.project)
 );
 
-router.post('/validateproject',
-  dbController.validateProject,
+router.post('/findproject',
+  dbController.findProjectByNameOrNumber,
   (req, res) => res.status(200).json(res.locals.foundProjects)
 );
 

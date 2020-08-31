@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 // global error handler
 app.use((err, req, res, next) => {
   const { msg, status } = err;
-  console.log(msg);
+  console.log('Error:', msg);
   return res.status(status).json(msg);
 });
 

@@ -31,9 +31,9 @@ dbController.getProjectById = (req, res, next) => {
   })()
 }
 
-dbController.validateProject = (req, res, next) => {
+dbController.findProjectByNameOrNumber = (req, res, next) => {
   const { project_name, project_number } = req.body;
-  const queryString = `SELECT * FROM projects WHERE project_name='${project_name}' OR project_number='${project_number}'`;
+  const queryString = `SELECT * FROM projects WHERE project_name='${project_name}' OR project_number='${project_number}';`;
   (async () => {
     try {
       const resp = await db.query(queryString);
@@ -43,7 +43,7 @@ dbController.validateProject = (req, res, next) => {
     catch (err) {
       next({ msg: err, status: 400 });
     }
-  })()
+  })();
 }
 
 dbController.addProject = (req, res, next) => {
@@ -76,9 +76,29 @@ dbController.resetTable = (req, res, next) => {
       next();
     }
     catch (err) {
-      next({ msg: err, status: 400 })
+      next({ msg: err, status: 400 });
     }
-  })()
+  })();
 }
+
+dbController.getDataByProjectId = (req, res, next) => {
+  const { project_id, table_name } = req.params;
+  const queryString = `SELECT * FROM ${table_name} WHERE project_id='${project_id}';`;
+  (async () => {
+    try {
+      const resp = await db.query(queryString);
+      res.locals.projectData = resp.rows;
+      next();
+    }
+    catch (err) {
+      next({ msg: err, status: 400 });
+    }
+  })();
+}
+
+dbController.updateDataByProjectId = (req, res, next) => {
+
+}
+
 
 module.exports = dbController;
