@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
+import Form from "../../components/form/form";
+
 import "./edit-project.styles.css";
 
 const EditProject = (props) => {
@@ -26,6 +28,7 @@ const EditProject = (props) => {
       ) : (
         <h2>Invalid Project ID</h2>
       )}
+      {fetched && <Form project_id={project_id} />}
     </div>
   );
 };

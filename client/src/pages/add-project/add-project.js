@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddProjectForm from "../../components/add-project-form/add-project-form";
+import AddProjectForm from "../../components/form/add-project-form";
 
 import "./add-project.styles.css";
 

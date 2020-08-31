@@ -9,8 +9,12 @@ const ProjectItem = (props) => {
   return (
     <div className="ProjectItem">
       <div className="ProjectItemDetails">
-        <span className="ProjectName">{project_name}</span>
-        <span className="ProjectNumber">{project_number}</span>
+        <span className="ProjectName">
+          <Link to={`/viewproject/${project_id}`}>{project_name}</Link>
+        </span>
+        <span className="ProjectNumber">
+          <Link to={`/viewproject/${project_id}`}>{project_number}</Link>
+        </span>
       </div>
       <div className="ProjectItemButtons">
         <Link to={`/viewproject/${project_id}`}>View Project</Link>

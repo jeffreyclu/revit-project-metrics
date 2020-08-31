@@ -5,26 +5,28 @@ import enums from "../../data/enums";
 import FormSection from "./form-section";
 
 const Form = (props) => {
-  const { formType } = props;
+  const { project_id } = props;
   const [currentSection, setSection] = useState(0);
   const [formData, setFormData] = useState({});
-  const [validated, setValidated] = useState(false);
 
-  const formSections = Object.values(enums[formType]).map((formSection, i) => (
+  const formSections = Object.values(
+    enums.editProject
+  ).map((formSection, i) => (
     <FormSection
+      project_id={project_id}
       key={`Form Section ${i}`}
       sectionTitle={formSection.title}
       formLabels={formSection.formLabels}
       section={i}
       currentSection={currentSection}
       setSection={setSection}
-      maxSections={Object.values(enums[formType]).length - 1}
+      maxSections={Object.values(enums.editProject).length - 1}
       formData={formData}
       setFormData={setFormData}
-      validated={validated}
-      setValidated={setValidated}
     />
   ));
+
+  console.log(Object.values(enums.editProject));
 
   return <form className="Form">{formSections}</form>;
 };

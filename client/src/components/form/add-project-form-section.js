@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import FormInput from "./form-input";
-import FormMessage from "./form-message";
+import FormInput from "../form/form-input";
+import FormMessage from "../form/form-message";
 
 import enums, { warningMessages } from "../../data/enums";
 

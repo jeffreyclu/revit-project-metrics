@@ -11,7 +11,8 @@ const AllProjects = () => {
       let res = await resp.json();
       setProjects(res);
     };
-    fetchProjects();
+    setTimeout(fetchProjects, 1000);
+    // fetchProjects();
   }, []);
 
   return (

@@ -1,7 +1,9 @@
 import React from "react";
 
-import "./projects-list.styles.css";
 import ProjectItem from "../project-item/project-item";
+import Loading from "../loading/loading";
+
+import "./projects-list.styles.css";
 
 const ProjectsList = ({ projects }) => {
   const projectsList = projects.map((project, i) => (
@@ -10,7 +12,7 @@ const ProjectsList = ({ projects }) => {
 
   return (
     <div className="ProjectsList">
-      {projects.length ? projectsList : <h2>Loading Projects</h2>}
+      {projects.length ? projectsList : <Loading text="Loading Projects" />}
     </div>
   );
 };
