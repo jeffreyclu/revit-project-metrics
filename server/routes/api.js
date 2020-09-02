@@ -23,7 +23,6 @@ router.get('/project/:project_id/:table_name',
   (req, res) => res.status(200).json(res.locals.projectData)
 );
 
-
 router.get('/project/:project_id',
   dbController.getProjectById,
   (req, res) => res.status(200).json(res.locals.project)

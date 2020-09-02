@@ -21,9 +21,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // global error handler
 app.use((err, req, res, next) => {
-  console.log(err)
   const { msg, status } = err;
-  console.log('Error:', msg);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(err);
+    console.log('Error:', msg);
+  }
   return res.status(status).json(msg);
 });
 
