@@ -113,7 +113,7 @@ dbController.updateDataByProjectId = (req, res, next) => {
   // build an data object for the db
   for (const[key, value] of Object.entries(req.body)) {
     // only store non-null values or non-id column values
-    if (value && key !== 'project_id' && key !== 'vision_data_id') data[key] = value; 
+    if (value && key !== 'project_id' && key !== 'vision_data_id' && key !== 'revit_id' && key !== 'sustainability_id') data[key] = value; 
   }
   // if there's no new data just skip
   if (JSON.stringify(data) === '{}') return next();
