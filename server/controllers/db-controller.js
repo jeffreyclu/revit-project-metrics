@@ -122,6 +122,27 @@ dbController.getDataByProjectId = (req, res, next) => {
   })();
 }
 
+
+dbController.getAllDataByProjectId = (req, res, next) => {
+  const { project_id } = req.params;
+  const queryString = `SELECT * FROM project_data 
+  LEFT JOIN vision_data
+  ON vision_data.project_id=project_data.project_id
+  LEFT JOIN revit_data
+  ON revit_data.project_id=project_data.project_id
+  WHERE project_data.project_id='${project_id}';`;
+  (async () => {
+    try {
+      const resp = await db.query(queryString);
+      res.locals.allProjectData = resp.rows;
+      next();
+    }
+    catch (err) {
+      next({ msg: err, status: 400 });
+    }
+  })();
+}
+
 dbController.updateDataByProjectId = (req, res, next) => {
   const { project_id, table_name } = req.params;
   const data = {};
@@ -152,6 +173,5 @@ dbController.updateDataByProjectId = (req, res, next) => {
       }
     })();
 }
-
 
 module.exports = dbController;

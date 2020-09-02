@@ -13,10 +13,16 @@ router.get('/allprojects',
   (req, res) => res.status(200).json(res.locals.projects)
 );
 
+router.get('/project/:project_id/all',
+  dbController.getAllDataByProjectId,
+  (req, res) => res.status(200).json(res.locals.allProjectData)
+);
+
 router.get('/project/:project_id/:table_name',
   dbController.getDataByProjectId,
   (req, res) => res.status(200).json(res.locals.projectData)
 );
+
 
 router.get('/project/:project_id',
   dbController.getProjectById,
