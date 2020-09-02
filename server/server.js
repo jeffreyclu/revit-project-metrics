@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -11,15 +12,16 @@ const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../client/build'));
+  console.log('in production')
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 }
-
-app.get('/', (req, res) => {
-  res.send({msg: 'Welcome to the Revit Project Metrics API!'})
-});
 
 // global error handler
 app.use((err, req, res, next) => {
+  console.log(err)
   const { msg, status } = err;
   console.log('Error:', msg);
   return res.status(status).json(msg);
