@@ -11,13 +11,13 @@ const EditProject = (props) => {
   const [fetched, setFetched] = useState(false);
   useEffect(() => {
     const fetchProject = async () => {
-      let resp = await fetch(`/api/project/${project_id}`);
+      let resp = await fetch(`/api/project/${project_id}/project_data`);
       let fetchedProject = await resp.json();
       if (!fetchedProject.length) return setFetched(false);
       setProject(fetchedProject[0]);
       return setFetched(true);
     };
-    fetchProject();
+    if (!fetched) fetchProject();
   }, [project_id]);
   return (
     <div className="EditProject">

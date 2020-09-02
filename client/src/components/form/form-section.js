@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import FormInput from "./form-input";
 import FormMessage from "./form-message";
 
-import { warningMessages } from "../../data/enums";
+// import { warningMessages } from "../../data/enums";
 
 const FormSection = ({
   project_id,
@@ -23,15 +23,20 @@ const FormSection = ({
       const table_name = sectionTitle.toLowerCase().replace(/\s/g, "_");
       const resp = await fetch(`/api/project/${project_id}/${table_name}`);
       const res = await resp.json();
-      setFormData(res[0]);
+      if (res.length) setFormData(res[0]);
     };
     if (currentSection === section) fetchData();
-  }, [currentSection]);
+  }, [currentSection, project_id, section, sectionTitle, setFormData]);
 
-  const saveData = async () => {
+  const submitData = async () => {
     const table_name = sectionTitle.toLowerCase().replace(/\s/g, "_");
-    const resp = await fetch(`/api/project/${project_id}/${table_name}`);
-    const res = await resp.json();
+    const resp = await fetch(`/api/project/${project_id}/${table_name}`, {
+      headers: { "Content-Type": "application/json" },
+      method: "PUT",
+      body: JSON.stringify(formData),
+    });
+    // const res = await resp.json();
+    // console.log(res);
   };
 
   // display nothing if the user is not at this section
@@ -72,7 +77,10 @@ const FormSection = ({
         {section > 0 && (
           <span
             className="Prev"
-            onClick={() => setSection((currentSection -= 1))}
+            onClick={() => {
+              submitData();
+              setSection((currentSection -= 1));
+            }}
           >
             Prev
           </span>
@@ -80,12 +88,19 @@ const FormSection = ({
         {section < maxSections && (
           <button
             className="Next"
-            onClick={() => setSection((currentSection += 1))}
+            onClick={() => {
+              submitData();
+              setSection((currentSection += 1));
+            }}
           >
             Next
           </button>
         )}
-        {section === maxSections && <button className="Submit">Submit</button>}
+        {section === maxSections && (
+          <button onClick={submitData} className="Submit">
+            Submit
+          </button>
+        )}
       </div>
     </div>
   );

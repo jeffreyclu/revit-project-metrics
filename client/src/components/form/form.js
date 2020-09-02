@@ -25,7 +25,7 @@ const Form = (props) => {
       setFormData={setFormData}
     />
   ));
-  return <form className="Form">{formSections}</form>;
+  return <div className="Form">{formSections}</div>;
 };
 
 export default Form;

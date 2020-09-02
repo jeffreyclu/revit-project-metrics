@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import FormInput from "../form/form-input";
 import FormMessage from "../form/form-message";
@@ -7,7 +6,7 @@ import FormMessage from "../form/form-message";
 import enums, { warningMessages } from "../../data/enums";
 
 const AddProjectFormSection = (props) => {
-  const { formData, setFormData, validated, setValidated } = props;
+  const { formData, setFormData, validated, setValidated, addProject } = props;
   const formLabels = enums.addProject.projectData.formLabels;
   const [formMessage, setFormMessage] = useState({
     projectName: {
@@ -17,7 +16,6 @@ const AddProjectFormSection = (props) => {
       warning: false,
     },
   });
-  const history = useHistory();
 
   const validateProject = async () => {
     const msg = { ...formMessage };
@@ -56,16 +54,6 @@ const AddProjectFormSection = (props) => {
       message: warningMessages.formWarnings.projectAlreadyExists,
     };
     setFormMessage(msg);
-  };
-
-  const addProject = async () => {
-    const resp = await fetch("/api/addproject", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
-    const res = await resp.json();
-    if (res) history.push(`/editproject/${res.project_id}`);
   };
 
   // generate the form inputs
