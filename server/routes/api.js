@@ -23,8 +23,13 @@ router.get('/project/:project_id',
   (req, res) => res.status(200).json(res.locals.project)
 );
 
-router.post('/findproject',
+router.post('/findprojectbynameornumber',
   dbController.findProjectByNameOrNumber,
+  (req, res) => res.status(200).json(res.locals.foundProjects)
+);
+
+router.post('/findproject',
+  dbController.findProject,
   (req, res) => res.status(200).json(res.locals.foundProjects)
 );
 

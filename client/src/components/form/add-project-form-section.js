@@ -39,7 +39,7 @@ const AddProjectFormSection = (props) => {
     if (!formData.project_name || !formData.project_number)
       return setFormMessage(msg);
 
-    const resp = await fetch("/api/findproject", {
+    const resp = await fetch("/api/findprojectbynameornumber", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify(formData),

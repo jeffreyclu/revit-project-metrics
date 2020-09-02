@@ -46,6 +46,21 @@ dbController.findProjectByNameOrNumber = (req, res, next) => {
   })();
 }
 
+dbController.findProject = (req, res, next) => {
+  const { searchTerm } = req.body;
+  const queryString = `SELECT * FROM project_data WHERE to_tsvector('english', project_name) @@ to_tsquery('english', '${searchTerm}');`;
+  (async () => {
+    try {
+      const resp = await db.query(queryString);
+      res.locals.foundProjects = resp.rows;
+      next();
+    }
+    catch (err) {
+      next({ msg: err, status: 400 });
+    }
+  })();
+}
+
 dbController.addProject = (req, res, next) => {
   const { project_name, project_number } = req.body;
   if (!project_name || !project_number) return next({ msg: 'body is undefined', status: 400 });
@@ -125,7 +140,7 @@ dbController.updateDataByProjectId = (req, res, next) => {
   setString = setString.slice(0, setString.length - 1);
   let queryString = `UPDATE ${table_name}
     SET ${setString}
-    WHERE project_id='${project_id}';`
+    WHERE project_id='${project_id}';`;
   (async () => {
     try {
         const resp = await db.query(queryString);

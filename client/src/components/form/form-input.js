@@ -18,7 +18,6 @@ const FormInput = (props) => {
           id={inputId}
           value={formData[inputId] || ""}
           onChange={(e) => {
-            console.log(e.target.checked);
             setFormData({ ...formData, [inputId]: e.target.value });
           }}
         />
