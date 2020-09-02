@@ -83,11 +83,11 @@ export default {
         },
         designYear: {
           displayText: "Design Year",
-          inputType: inputTypes.month,
+          inputType: inputTypes.number,
         },
         builtYear: {
           displayText: "Built Year",
-          inputType: inputTypes.month,
+          inputType: inputTypes.number,
         },
       },
     },
@@ -100,6 +100,50 @@ export default {
         },
         outdoorAmenityArea: {
           displayText: "Outdoor Amenity Area",
+          inputType: inputTypes.number,
+        },
+        mechanicalArea: {
+          displayText: "Mechanical Area",
+          inputType: inputTypes.number,
+        },
+        residentialArea: {
+          displayText: "Residential Area",
+          inputType: inputTypes.number,
+        },
+        retailArea: {
+          displayText: "Retail Area",
+          inputType: inputTypes.number,
+        },
+        officeArea: {
+          displayText: "Office Area",
+          inputType: inputTypes.number,
+        },
+        commercialArea: {
+          displayText: "Commercial Area",
+          inputType: inputTypes.number,
+        },
+        hospitalityArea: {
+          displayText: "Hospitality Area",
+          inputType: inputTypes.number,
+        },
+        parkingArea: {
+          displayText: "Parking Area",
+          inputType: inputTypes.number,
+        },
+        numberOfStories: {
+          displayText: "Number of Stories",
+          inputType: inputTypes.number,
+        },
+        numberOfPassengerElevators: {
+          displayText: "Number of Passenger Elevators",
+          inputType: inputTypes.number,
+        },
+        numberOfServiceElevators: {
+          displayText: "Number of Service Elevators",
+          inputType: inputTypes.number,
+        },
+        balconies: {
+          displayText: "Balconies",
           inputType: inputTypes.number,
         },
       },
