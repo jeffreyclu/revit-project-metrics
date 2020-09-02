@@ -33,6 +33,11 @@ router.post('/addproject',
   (req, res) => res.status(200).json(res.locals.projectId)
 );
 
+router.put('/project/:project_id/:table_name',
+  dbController.updateDataByProjectId,
+  (req, res) => res.status(200).json(res.locals.result)
+);
+
 router.delete('/resettable',
   dbController.resetTable,
   (req, res) => res.status(200).json(res.locals.result)
