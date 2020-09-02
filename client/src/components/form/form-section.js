@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import FormInput from "./form-input";
 import FormMessage from "./form-message";
@@ -98,7 +99,7 @@ const FormSection = ({
         )}
         {section === maxSections && (
           <button onClick={submitData} className="Submit">
-            Submit
+            <Link to={`/viewproject/${project_id}`}>Submit</Link>
           </button>
         )}
       </div>
