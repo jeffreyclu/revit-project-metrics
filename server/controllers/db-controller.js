@@ -108,8 +108,7 @@ dbController.getDataByProjectId = (req, res, next) => {
 }
 
 dbController.updateDataByProjectId = (req, res, next) => {
-  const { project_id, table_name } = req.params; 
-  console.log(req.body)
+  const { project_id, table_name } = req.params;
   const data = {};
   // build an data object for the db
   for (const[key, value] of Object.entries(req.body)) {
@@ -127,7 +126,6 @@ dbController.updateDataByProjectId = (req, res, next) => {
   let queryString = `UPDATE ${table_name}
     SET ${setString}
     WHERE project_id='${project_id}';`
-  console.log(queryString);
   (async () => {
     try {
         const resp = await db.query(queryString);
