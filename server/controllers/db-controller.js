@@ -130,6 +130,8 @@ dbController.getAllDataByProjectId = (req, res, next) => {
   ON vision_data.project_id=project_data.project_id
   LEFT JOIN revit_data
   ON revit_data.project_id=project_data.project_id
+  LEFT JOIN sustainability_data
+  ON sustainability_data.project_id=project_data.project_id
   WHERE project_data.project_id='${project_id}';`;
   (async () => {
     try {

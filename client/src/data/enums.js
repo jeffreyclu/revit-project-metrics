@@ -148,5 +148,18 @@ export default {
         },
       },
     },
+    sustainabilityData: {
+      title: "Sustainability Data",
+      formLabels: {
+        energyModel: {
+          displayText: "Energy Model",
+          inputType: inputTypes.text,
+        },
+        leedStatus: {
+          displayText: "LEED Status",
+          inputType: inputTypes.text,
+        },
+      },
+    },
   },
 };
