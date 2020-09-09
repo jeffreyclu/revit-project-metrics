@@ -3,3 +3,18 @@
   flex-flow: column nowrap;
   margin-top: 10rem;
 }
+
+.ProjectsDashboard {
+  /* width: 100vw; */
+  /* height: 2000px; */
+  width: 1000px;
+  height: 2000px;
+}
+
+.DashboardContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  margin-top: 10rem;
+}
