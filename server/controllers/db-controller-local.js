@@ -1,4 +1,6 @@
-const db = require('../models/db-model');
+const { Request } = require('tedious');
+
+const db = require('../models/db-model-local');
 
 const dbController = {};
 
@@ -7,7 +9,7 @@ dbController.getProjects = (req, res, next) => {
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.projects = resp.recordset;
+      res.locals.projects = resp.rows;
       next();
     }
     catch (err) {
@@ -22,7 +24,7 @@ dbController.getProjectById = (req, res, next) => {
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.project = resp.recordset;
+      res.locals.project = resp.rows;
       next();
     }
     catch (err) {
@@ -33,12 +35,11 @@ dbController.getProjectById = (req, res, next) => {
 
 dbController.findProjectByNameOrNumber = (req, res, next) => {
   const { project_name, project_number } = req.body;
-  const queryString = `SELECT * FROM project_data WHERE CONVERT(VARCHAR, project_name)='${project_name}' OR CONVERT(VARCHAR, project_number)='${project_number}';`;
+  const queryString = `SELECT * FROM project_data WHERE project_name='${project_name}' OR project_number='${project_number}';`;
   (async () => {
     try {
       const resp = await db.query(queryString);
-      console.log(resp.recordset)
-      res.locals.foundProjects = resp.recordset;
+      res.locals.foundProjects = resp.rows;
       next();
     }
     catch (err) {
@@ -53,7 +54,7 @@ dbController.findProject = (req, res, next) => {
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.foundProjects = resp.recordset;
+      res.locals.foundProjects = resp.rows;
       next();
     }
     catch (err) {
@@ -67,13 +68,12 @@ dbController.addProject = (req, res, next) => {
   if (!project_name || !project_number) return next({ msg: 'body is undefined', status: 400 });
   const projectsQueryString = `INSERT INTO project_data (project_name, project_number)
   VALUES ('${project_name}', '${project_number}')
-  SELECT SCOPE_IDENTITY() AS project_id`;
+  RETURNING project_id`;
   (async () => {
     try {
       const projects = await db.query(projectsQueryString);
-      const newProject = await projects.recordset[0];
+      const newProject = await projects.rows[0];
       res.locals.projectId = newProject;
-      console.log(newProject.project_id);
       const visionQueryString = `INSERT INTO vision_data (project_id)
       VALUES ('${newProject.project_id}')`;
       await db.query(visionQueryString);
@@ -114,7 +114,7 @@ dbController.getDataByProjectId = (req, res, next) => {
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.projectData = resp.recordset;
+      res.locals.projectData = resp.rows;
       next();
     }
     catch (err) {
@@ -137,7 +137,7 @@ dbController.getAllDataByProjectId = (req, res, next) => {
   (async () => {
     try {
       const resp = await db.query(queryString);
-      res.locals.allProjectData = resp.recordset;
+      res.locals.allProjectData = resp.rows;
       next();
     }
     catch (err) {
@@ -163,10 +163,8 @@ dbController.updateDataByProjectId = (req, res, next) => {
   }
   setString = setString.slice(0, setString.length - 1);
   let queryString = `UPDATE ${table_name}
-    SET ${setString}
-    WHERE project_id='${project_id}';`;
-  console.log(data);
-  console.log(queryString);
+  SET ${setString}
+  WHERE project_id='${project_id}';`;
   (async () => {
     try {
         const resp = await db.query(queryString);

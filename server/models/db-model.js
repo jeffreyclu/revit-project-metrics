@@ -1,13 +1,21 @@
-const { Pool } = require('pg');
+const sql = require('mssql');
 
-// create a new pool here using the connection string above
-const pool = new Pool({
-  connectionString: process.env.LOCAL_DATABASE_URL
-});
-
-module.exports = {
-  query: (text, params, callback) => {
-    if (process.env.NODE_ENV !== 'production') console.log('executed query', text);
-    return pool.query(text, params, callback);
+const config = {
+  user: process.env.WEB_DATABASE_USER,
+  password: process.env.WEB_DATABASE_PASSWORD,
+  database: process.env.WEB_DATABASE_STAGING, // TODO: add rule to change this to production DB when not in dev
+  server: process.env.WEB_DATABASE_SERVER,
+  options: {
+    encrypt: true,
   }
 };
+
+module.exports = {
+  query: (text) => {
+    // sql.connect() will return the existing global pool if it exists or create a new one if it doesn't
+    return sql.connect(config).then((pool) => {
+      if (process.env.NODE_ENV !== 'production') console.log('executed query', text);
+      return pool.query(text)
+    })
+  }
+}

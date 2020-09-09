@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-app.set('port', (process.env.PORT || 3001));
+app.set('port', (process.env.PORT || process.env.NODE_ENV === 'production' ? 3000 : 3001));
 app.use(express.json());
 
 const apiRouter = require('./routes/api');
