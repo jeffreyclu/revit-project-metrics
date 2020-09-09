@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CostDisplay from "./cost-display";
 
 const ProjectDisplay = (props) => {
   const { project } = props;
@@ -14,6 +15,7 @@ const ProjectDisplay = (props) => {
       <h2>
         {project.project_number} {project.project_name}
       </h2>
+      <CostDisplay project={project} />
       {dataArray}
     </div>
   );

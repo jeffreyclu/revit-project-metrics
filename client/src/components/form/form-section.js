@@ -31,6 +31,7 @@ const FormSection = ({
 
   const submitData = async () => {
     const table_name = sectionTitle.toLowerCase().replace(/\s/g, "_");
+    console.log(formData);
     const resp = await fetch(`/api/project/${project_id}/${table_name}`, {
       headers: { "Content-Type": "application/json" },
       method: "PUT",
