@@ -21,8 +21,10 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mssql": "^6.2.1",
     "pg": "^8.3.2",
     "sequelize": "^6.3.4",
-    "tedious": "^9.2.1"
+    "tedious": "^9.2.1",
+    "tedious-connection-pool": "^1.0.5"
   }
 }
