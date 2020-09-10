@@ -5,10 +5,8 @@
 }
 
 .ProjectsDashboard {
-  /* width: 100vw; */
-  /* height: 2000px; */
-  width: 1000px;
-  height: 2000px;
+  width: 960px;
+  height: 1080px;
 }
 
 .DashboardContainer {
